@@ -1,6 +1,7 @@
 import pickle
 import streamlit as st
 import requests
+from PIL import Image
 
 def fetch_poster(movie_id):
     url = "https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US".format(movie_id)
@@ -23,7 +24,20 @@ def recommend(movie):
 
     return recommended_movie_names,recommended_movie_posters
 
+im = Image.open("fav-icon.png")
+st.set_page_config(
+        page_title="Holly-Recommander",
+        page_icon=im,
+        layout="wide",
+    ) 
 
+# im = Image.open("favicon.ico")
+# st.set_page_config(
+#     page_title="Hello",
+#     page_icon=im,
+#     layout="wide",
+# )
+ 
 st.header('Hollywood Movies Recommendation System',divider=True)
 movies = pickle.load(open('movie_list.pkl','rb'))
 similarity = pickle.load(open('similarity.pkl','rb'))
