@@ -1,0 +1,10 @@
+h2 {
+    font-family: monospace;
+    font-weight: 600;
+    color: rgb(0 0 0);
+    letter-spacing: -0.005em;
+    padding: 1rem 0px;
+    padding-left: 23%;
+    line-height: 1.2;
+    background: #def1ff;
+}

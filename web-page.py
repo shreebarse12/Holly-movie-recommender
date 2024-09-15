@@ -21,7 +21,6 @@ def recommend(movie):
         movie_id = movies.iloc[i[0]].movie_id
         recommended_movie_posters.append(fetch_poster(movie_id))
         recommended_movie_names.append(movies.iloc[i[0]].title)
-
     return recommended_movie_names,recommended_movie_posters
 
 im = Image.open("fav-icon.png")
@@ -37,7 +36,13 @@ st.set_page_config(
 #     page_icon=im,
 #     layout="wide",
 # )
- 
+
+
+
+#connecting with css file
+with open('style.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 st.header('Hollywood Movies Recommendation System',divider=True)
 movies = pickle.load(open('movie_list.pkl','rb'))
 similarity = pickle.load(open('similarity.pkl','rb'))
@@ -69,5 +74,8 @@ if st.button('Recommend', type="primary"):
         st.image(recommended_movie_posters[4])
 
 
-
+sentiment_mapping = [":material/thumb_down:", ":material/thumb_up:"]
+selected = st.feedback("thumbs")
+if selected is not None:
+    st.markdown(f"You selected: {sentiment_mapping[selected]}")
 
